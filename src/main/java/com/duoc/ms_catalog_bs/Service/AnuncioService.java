@@ -22,7 +22,6 @@ public class AnuncioService {
     public  AnuncioDto procesarPublicacion(AnuncioDto dto) throws IllegalAccessException {
         log.info("[SERVICE-BS] Solicitando validación horizontal de usuario al MS de clientes...");
 
-        // 1. Usamos tu cliente de la primera imagen para verificar con tu compañero
         boolean esChicaValida = clienteClient.verificarSiEsChicaValida(dto.getChicaId());
 
         if (!esChicaValida) {
@@ -30,10 +29,8 @@ public class AnuncioService {
             throw new IllegalAccessException("El usuario no está registrado como proveedora autorizada.");
         }
 
-        // 2. Aplicamos la regla de negocio
         dto.setEstado("DISPONIBLE");
 
-        // 3. Usamos tu cliente de la segunda imagen para mandarlo a guardar a tu BD (8082)
         log.info("[SERVICE-BS] Todo OK. Enviando anuncio a guardar en la persistencia...");
         return dbClient.guardarEnDb(dto);
     }
