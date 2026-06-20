@@ -19,7 +19,7 @@ public class AnuncioService {
     @Autowired
     private ClienteBsFeignClient clienteClient;
 
-    public static AnuncioDto procesarPublicacion(AnuncioDto dto) throws IllegalAccessException {
+    public  AnuncioDto procesarPublicacion(AnuncioDto dto) throws IllegalAccessException {
         log.info("[SERVICE-BS] Solicitando validación horizontal de usuario al MS de clientes...");
 
         // 1. Usamos tu cliente de la primera imagen para verificar con tu compañero
